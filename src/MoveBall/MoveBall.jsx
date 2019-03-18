@@ -6,9 +6,9 @@ let
     width = 480,
     height = 320,
     x = width / 2,
-    dx = 1,
+    dx =Math.random()* 1,
     y = height - 30,
-    dy = -1,
+    dy = Math.random()*-1,
     tempWidth = 0,
     tempHeight = 0,
 //  posBall=0,
@@ -20,12 +20,12 @@ class MoveBall extends React.Component {
         this.intervalId = 0;
         this.intervalId2 = 0;
         this.state = {
-            x:Math.random() * this.props.x,
-            y:Math.random() * this.props.y,
+            x:Math.random() * this.props.x/ 2,
+            y:Math.random() * this.props.y- 30,
+            radius: Math.random() *this.props.radius,
             startB: true,
             startC: true
         };
-
     }
     componentDidUpdate() {
         this.context = this.refs.canvas.getContext("2d");
@@ -40,17 +40,16 @@ class MoveBall extends React.Component {
         return color;
     }
 
-    drawBall = (x,y) => {
-        radius =this.props.radius;
-        this.context.clearRect(0, 0, width, height);
-        this.context.beginPath();
-        this.context.arc(x, y, radius, 0, Math.PI * 2);
-        this.context.fillStyle = t;
-        this.context.fill();
-        this.drawVerticalLine();
-        this.drawHorizontalLine();
-        this.context.stroke();
-        this.context.closePath()
+    drawBall = (x,y, radius) => {
+            this.context.clearRect(0, 0, width, height);
+            this.context.beginPath();
+            this.context.arc(x, y, radius, 0, Math.PI * 2);
+            this.context.fillStyle = t;
+            this.context.fill();
+            this.drawVerticalLine();
+            this.drawHorizontalLine();
+            this.context.stroke();
+            this.context.closePath();
     };
 
     drawVerticalLine() {
@@ -63,9 +62,8 @@ class MoveBall extends React.Component {
         this.context.lineTo(width, tempHeight);
     }
 
-    moveBall=(x,y)=> {
-        radius =this.props.radius;
-        this.drawBall(x,y);
+    moveBall=(x,y,radius)=> {
+        this.drawBall(x,y,radius);
         if (y + dy > height - radius ) {
             dy = -dy;
             t=this.get_random_color();
@@ -104,10 +102,10 @@ class MoveBall extends React.Component {
         console.log("tempWidth: " + tempWidth + " tempHeight: " + tempHeight + "radius " + radius+ " height: " + height + "width "+ width);
     }
     forInterval=()=>{
-        this.moveBall(this.state.x,this.state.y)
+        this.moveBall(this.state.x,this.state.y, this.state.radius)
     };
     forInterval2=()=>{
-        this.moveBall(this.state.x,this.state.y)
+        this.moveBall(this.state.x,this.state.y,this.state.radius)
     };
 
     start = () => {
@@ -154,7 +152,7 @@ class MoveBall extends React.Component {
                     />
                 </div>
                 {this.state.startB === true
-                    ? <button type='button' onClick={() => this.start()}>Start/Increase Speed </button>
+                    ? <button type='button' onClick={() => this.start()}>Start/Increase Speed  </button>
                     : <button type='button' onClick={() => this.stop()}>Stop/Decrease Speed </button>
                 }
                 {this.state.startC === true

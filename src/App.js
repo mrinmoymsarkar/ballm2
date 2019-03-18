@@ -10,10 +10,9 @@ class App extends React.Component {
           <div>
             <MoveBall
             radius = {12}
-            x = {100}
-            y = {60}
-            width = {480}
-            height = {320}
+            x = {480}
+            y = {320}
+
             />
           </div>
         </div>
