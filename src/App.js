@@ -1,25 +1,14 @@
-import React, { Component} from "react";
 import MoveBall from "./MoveBall/MoveBall";
+import React from "react";
 
-class App extends React.Component {
-
-
-  render() {
-    return(
+const App=()=>
         <div>
-          <div>
             <MoveBall
-            radius = {12}
-            x = {480}
-            y = {320}
-
+                radius = {12}
+                x = {480}
+                y = {320}
             />
-          </div>
         </div>
-    )
-  }
-}
-
 
 export  default  App;
 

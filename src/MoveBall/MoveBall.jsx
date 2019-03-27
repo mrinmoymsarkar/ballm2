@@ -138,6 +138,10 @@ class MoveBall extends React.Component {
         })
     };
 
+    randomise=()=>{
+        window.location.reload();
+    };
+
 
     render() {
         // this.context = this.refs.canvas.getContext("2d");
@@ -159,6 +163,7 @@ class MoveBall extends React.Component {
                     ? <button type='button' onClick={() => this.start2()}>Start/Increase Speed </button>
                     : <button type='button' onClick={() => this.stop2()}>Stop/Decrease Speed </button>
                 }
+                <button type='button' onClick={() => this.randomise()}>Randomise</button>
             </div>
         );
     }
